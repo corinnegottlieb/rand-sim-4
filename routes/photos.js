@@ -1,7 +1,7 @@
 const express = require( 'express' )
 const router = express.Router()
-const photosController = require('../controllers/photos-controller')
+const photosRestController = require('../controllers/photos-rest-controller')
 
-router.get( '/', photosController.fetchPhotosFromUnsplashApi.bind( photosController ) )
+router.get( '/:term', photosRestController.searchPhotos.bind( photosRestController ) )
 
 module.exports = router
