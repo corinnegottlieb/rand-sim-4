@@ -1,5 +1,5 @@
-const UnsplashApiService = require( '../lib/unsplash-api-service' )
-const ColorsApiService = require( '../lib/colors-api-service' )
+const UnsplashApiService = require( '../services/unsplash-api-service' )
+const ColorsApiService = require( '../services/colors-api-service' )
 
 class PhotosRestController {
     constructor() {
