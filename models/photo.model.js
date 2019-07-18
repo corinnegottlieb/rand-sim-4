@@ -24,6 +24,4 @@ const photoSchema = new Schema( {
     tags: [ String ]
 } )
 
-const Photo = mongoose.model( 'photo', photoSchema )
-
-module.exports = Photo
+module.exports = mongoose.model( 'photo', photoSchema )

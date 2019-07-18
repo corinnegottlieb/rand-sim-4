@@ -1,5 +1,5 @@
-const UnsplashApiService = require( '../services/unsplash-api-service' )
-const ColorsApiService = require( '../services/colors-api-service' )
+const UnsplashApiService = require( '../services/unsplash-api.service' )
+const ColorsApiService = require( '../services/colors-api.service' )
 
 class PhotosRestController {
     constructor() {
@@ -8,12 +8,12 @@ class PhotosRestController {
     }
 
     async searchPhotos( request, response ) {
-        const photos = await this.fetchPhotosFromUnsplashApi( request.params.term )
+        const photos = await this.fetchPhotosFromUnsplashApi( request.params['term'] )
 
         const canOrderBy = [ 'likes', 'resolution' ]
 
-        if ( request.query.orderBy ) {
-            const orderBy = request.query.orderBy
+        if ( request.query['orderBy'] ) {
+            const orderBy = request.query['orderBy']
 
             if ( !canOrderBy.includes( orderBy ) ) {
                 response.status( 422 )

@@ -1,16 +1,36 @@
-require( 'dotenv' ).config()
+( async function () {
+    require( 'dotenv' ).config()
 
-const express = require( 'express' )
-const bodyParser = require( 'body-parser' )
-const photosRouter = require( './routes/photos' )
-const app = express()
-const port = process.env.SERVER_PORT
+    const express = require( 'express' )
+    const bodyParser = require( 'body-parser' )
+    const photosRouter = require( './routes/photos' )
+    const app = express()
+    const PORT = process.env.SERVER_PORT || 3000
+    const mongoose = require( 'mongoose' )
 
-app.use( bodyParser.json() )
-app.use( bodyParser.urlencoded( { extended: false } ) )
+    const MONGO_URL = process.env.MONGO_DB_HOST + ':' + process.env.MONGO_DB_PORT + '/' + process.env.MONDO_DB_NAME
 
-app.use( '/photos', photosRouter )
+    const connection = await mongoose
+        .connect( MONGO_URL, { useNewUrlParser: true } )
+        .catch( err => console.error( 'Error connecting db:', err.message ) )
 
-app.listen( port, () => console.log( `Running server on port ${ port }` ) )
+    if ( !connection ) {
+        app.use( ( req, res ) => {
+            res.status( 500 )
+            res.json( { error: 'Server is unavailable at the moment' } )
+        } )
+    }
 
-module.exports = app
+    app.use( bodyParser.json() )
+    app.use( bodyParser.urlencoded( { extended: false } ) )
+
+    app.get( '/health', ( req, res ) => res.json( { UP: true } ) )
+
+    app.use( '/photos', photosRouter )
+
+    app.listen( PORT, () => console.log( `Server is running on port ${ PORT }` ) )
+
+    module.exports = app
+} )()
+
+

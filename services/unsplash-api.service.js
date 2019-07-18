@@ -1,5 +1,5 @@
 require( 'dotenv' ).config()
-const createHttpService = require( './http-service' )
+const createHttpService = require( './http.service' )
 
 class UnsplashApiService {
     constructor() {
