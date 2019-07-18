@@ -1,4 +1,4 @@
-const mongoose = require( 'mongoose' )
+import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const RGBSchema = new Schema( {
@@ -24,4 +24,4 @@ const photoSchema = new Schema( {
     tags: [ String ]
 } )
 
-module.exports = mongoose.model( 'photo', photoSchema )
+export default mongoose.model( 'photo', photoSchema )

@@ -1,12 +1,11 @@
-( async function () {
-    require( 'dotenv' ).config()
+import 'dotenv/config'
+import express from 'express'
+import photosRouter from './routes/photos'
+import mongoose from 'mongoose'
 
-    const express = require( 'express' )
-    const bodyParser = require( 'body-parser' )
-    const photosRouter = require( './routes/photos' )
+( async () => {
     const app = express()
     const PORT = process.env.SERVER_PORT || 3000
-    const mongoose = require( 'mongoose' )
 
     const MONGO_URL = process.env.MONGO_DB_HOST + ':' + process.env.MONGO_DB_PORT + '/' + process.env.MONDO_DB_NAME
 
@@ -20,9 +19,6 @@
             res.json( { error: 'Server is unavailable at the moment' } )
         } )
     }
-
-    app.use( bodyParser.json() )
-    app.use( bodyParser.urlencoded( { extended: false } ) )
 
     app.get( '/health', ( req, res ) => res.json( { UP: true } ) )
 

@@ -1,8 +1,8 @@
-const axios = require( 'axios' )
+import axios from 'axios'
 
 class HttpService {
     constructor( baseURL, headers = {} ) {
-        this.axiosInstance = axios.default.create( {
+        this.axiosInstance = axios.create( {
             baseURL,
             timeout: 5000,
             headers
@@ -10,7 +10,7 @@ class HttpService {
     }
 }
 
-module.exports = function ( baseURL, headers = {} ) {
+export default function ( baseURL, headers = {} ) {
     const service = new HttpService( baseURL, headers )
 
     return service.axiosInstance

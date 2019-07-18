@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon server"
+    "start": "nodemon --exec babel-node ./server.js"
   },
   "dependencies": {
     "axios": "^0.19.0",
@@ -11,5 +11,11 @@
     "dotenv": "^8.0.0",
     "express": "~4.16.1",
     "mongoose": "^5.6.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "nodemon": "^1.19.1"
   }
 }

@@ -1,5 +1,5 @@
-require( 'dotenv' ).config()
-const createHttpService = require( './http.service' )
+import 'dotenv/config'
+import createHttpService from './http.service'
 
 class UnsplashApiService {
     constructor() {
@@ -34,4 +34,4 @@ class UnsplashApiService {
     }
 }
 
-module.exports = UnsplashApiService
+export default UnsplashApiService

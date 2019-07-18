@@ -1,5 +1,5 @@
-require( 'dotenv' ).config()
-const createHttpService = require( './http.service' )
+import 'dotenv/config'
+import createHttpService from './http.service'
 
 class ColorsApiService {
     constructor() {
@@ -25,4 +25,4 @@ class ColorsApiService {
     }
 }
 
-module.exports = ColorsApiService
+export default ColorsApiService

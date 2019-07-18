@@ -1,7 +1,8 @@
-const express = require( 'express' )
+import express from 'express'
+import photosRestController from '../controllers/photos.rest-controller'
+
 const router = express.Router()
-const photosRestController = require('../controllers/photos.rest-controller')
 
 router.get( '/:term', photosRestController.searchPhotos.bind( photosRestController ) )
 
-module.exports = router
+export default router

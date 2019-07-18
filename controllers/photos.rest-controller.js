@@ -1,5 +1,5 @@
-const UnsplashApiService = require( '../services/unsplash-api.service' )
-const ColorsApiService = require( '../services/colors-api.service' )
+import UnsplashApiService from '../services/unsplash-api.service'
+import ColorsApiService from '../services/colors-api.service'
 
 class PhotosRestController {
     constructor() {
@@ -64,4 +64,4 @@ class PhotosRestController {
     }
 }
 
-module.exports = new PhotosRestController()
+export default new PhotosRestController()
