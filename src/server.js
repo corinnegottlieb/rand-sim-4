@@ -2,6 +2,7 @@ import 'dotenv/config'
 import express from 'express'
 import photosRouter from './routes/photos'
 import mongoose from 'mongoose'
+import path from 'path'
 
 ( async () => {
     const app = express()
@@ -22,7 +23,9 @@ import mongoose from 'mongoose'
 
     app.get( '/health', ( req, res ) => res.json( { UP: true } ) )
 
-    app.use( '/photos', photosRouter )
+    // app.use( express.static( path( __dirname, 'public' ) ) )
+
+    app.use( '/api/photos', photosRouter )
 
     app.listen( PORT, () => console.log( `Server is running on port ${ PORT }` ) )
 } )()

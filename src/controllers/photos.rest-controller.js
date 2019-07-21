@@ -7,6 +7,10 @@ class PhotosRestController {
         this.colorsApiService = new ColorsApiService()
     }
 
+    static removeHashFromHexCode( color ) {
+        return color.replace( '#', '' )
+    }
+
     async searchPhotos( request, response ) {
         const photos = await this.fetchPhotosFromUnsplashApi( request.params['term'] )
 
@@ -59,8 +63,10 @@ class PhotosRestController {
         return await this.colorsApiService.fetchColorInfo( hex )
     }
 
-    static removeHashFromHexCode( color ) {
-        return color.replace( '#', '' )
+    async fetchPhotoInfo( request, response ) {
+        const info = await this.unsplashApiService.fetchPhotoInfo( request.photo_id )
+
+        response.send( info.data )
     }
 }
 

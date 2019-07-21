@@ -10,8 +10,8 @@ class UnsplashApiService {
         return tags.map( tag => tag.title )
     }
 
-    static mapUnsplashResponseToJson( unsplashResponse ) {
-        const items = unsplashResponse.results
+    static mapUnsplashSearchResponseToJson( unsplashSearchResponse ) {
+        const items = unsplashSearchResponse.results
 
         return items.map( item => {
             return {
@@ -27,10 +27,20 @@ class UnsplashApiService {
         } )
     }
 
+    static mapUnsplashPhotoInfoResponse( unsplashPhotoInfoResponse ) {
+        return unsplashPhotoInfoResponse
+    }
+
     async fetchPhotosFromUnsplashApi( term ) {
         const photos = await this.httpService.get( '/search/photos?query=' + term )
 
-        return UnsplashApiService.mapUnsplashResponseToJson( photos.data )
+        return UnsplashApiService.mapUnsplashSearchResponseToJson( photos.data )
+    }
+
+    async fetchPhotoInfo( photoId ) {
+        const info = await this.httpService.get( '/photos/' + photoId )
+
+        return UnsplashApiService.mapUnsplashPhotoInfoResponse( info )
     }
 }
 
