@@ -1,5 +1,6 @@
 import 'dotenv/config'
 import createHttpService from './http.service'
+import * as Vibrant from 'node-vibrant'
 
 class UnsplashApiService {
     constructor() {
@@ -28,7 +29,16 @@ class UnsplashApiService {
     }
 
     static mapUnsplashPhotoInfoResponse( unsplashPhotoInfoResponse ) {
-        return unsplashPhotoInfoResponse
+        return {
+            id: unsplashPhotoInfoResponse.id,
+            width: unsplashPhotoInfoResponse.width,
+            height: unsplashPhotoInfoResponse.height,
+            description: unsplashPhotoInfoResponse.description,
+            urls: unsplashPhotoInfoResponse.urls,
+            likes: unsplashPhotoInfoResponse.likes,
+            camera: unsplashPhotoInfoResponse.exif,
+            tags: UnsplashApiService.convertResponseTagsIntoArray( unsplashPhotoInfoResponse.tags )
+        }
     }
 
     async fetchPhotosFromUnsplashApi( term ) {
@@ -38,9 +48,19 @@ class UnsplashApiService {
     }
 
     async fetchPhotoInfo( photoId ) {
-        const info = await this.httpService.get( '/photos/' + photoId )
+        const photoInfoResponse = await this.httpService.get( '/photos/' + photoId )
 
-        return UnsplashApiService.mapUnsplashPhotoInfoResponse( info )
+        const colorPalette = await Vibrant.from( photoInfoResponse.data.urls.regular ).getPalette()
+
+        const photoInfo = UnsplashApiService.mapUnsplashPhotoInfoResponse( photoInfoResponse.data )
+
+        // Hint: Spread object syntax
+        return {
+            ...photoInfo,
+            palette: {
+                ...colorPalette
+            }
+        }
     }
 }
 

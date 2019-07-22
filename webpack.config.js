@@ -1,5 +1,11 @@
+const webpack = require( 'webpack' )
 const path = require( 'path' )
 const nodeExternals = require( 'webpack-node-externals' )
+
+const bannerOptions = {
+    raw: true,
+    banner: 'require("source-map-support").install();'
+}
 
 module.exports = {
     target: 'node',
@@ -12,4 +18,8 @@ module.exports = {
         filename: 'server.js'
     },
     externals: [ nodeExternals() ],
+    plugins: [
+        new webpack.BannerPlugin( bannerOptions )
+    ],
+    devtool: 'sourcemap'
 }

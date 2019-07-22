@@ -64,9 +64,9 @@ class PhotosRestController {
     }
 
     async fetchPhotoInfo( request, response ) {
-        const info = await this.unsplashApiService.fetchPhotoInfo( request.photo_id )
+        const info = await this.unsplashApiService.fetchPhotoInfo( request.params.photo_id )
 
-        response.send( info.data )
+        response.send( info )
     }
 }
 
