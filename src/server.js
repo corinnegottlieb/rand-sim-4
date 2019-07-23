@@ -2,7 +2,6 @@ import 'dotenv/config'
 import express from 'express'
 import photosRouter from './routes/photos'
 import mongoose from 'mongoose'
-import path from 'path'
 
 ( async () => {
     const app = express()
@@ -25,13 +24,13 @@ import path from 'path'
 
     // app.use( express.static( path( __dirname, 'public' ) ) )
 
-    app.use(function (req, res, next) {
-        res.header('Access-Control-Allow-Origin', '*')
-        res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-        res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With')
+    app.use( ( req, res, next ) => {
+        res.header( 'Access-Control-Allow-Origin', '*' )
+        res.header( 'Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS' )
+        res.header( 'Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With' )
 
         next()
-    })
+    } )
 
     app.use( '/api/photos', photosRouter )
 
