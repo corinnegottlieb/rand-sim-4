@@ -12,12 +12,13 @@ class PhotosRestController {
     }
 
     async searchPhotos( request, response ) {
-        const photos = await this.fetchPhotosFromUnsplashApi( request.params['term'] )
+        const page = request.query[ 'page' ] || 1
+        const photos = await this.fetchPhotosFromUnsplashApi( request.params[ 'term' ], page )
 
         const canOrderBy = [ 'likes', 'resolution' ]
 
-        if ( request.query['orderBy'] ) {
-            const orderBy = request.query['orderBy']
+        if ( request.query[ 'orderBy' ] ) {
+            const orderBy = request.query[ 'orderBy' ]
 
             if ( !canOrderBy.includes( orderBy ) ) {
                 response.status( 422 )
@@ -39,8 +40,8 @@ class PhotosRestController {
     /*
      * Make the function make all the calls to the Colors API in parallel
      */
-    async fetchPhotosFromUnsplashApi( term ) {
-        const photos = await this.unsplashApiService.fetchPhotosFromUnsplashApi( term )
+    async fetchPhotosFromUnsplashApi( term, page ) {
+        const photos = await this.unsplashApiService.fetchPhotosFromUnsplashApi( term, page )
 
         const promises = []
 

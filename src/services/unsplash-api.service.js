@@ -41,8 +41,8 @@ class UnsplashApiService {
         }
     }
 
-    async fetchPhotosFromUnsplashApi( term ) {
-        const photos = await this.httpService.get( '/search/photos?query=' + term )
+    async fetchPhotosFromUnsplashApi( term, page ) {
+        const photos = await this.httpService.get( '/search/photos?query=' + term + '&page=' + page )
 
         return UnsplashApiService.mapUnsplashSearchResponseToJson( photos.data )
     }
