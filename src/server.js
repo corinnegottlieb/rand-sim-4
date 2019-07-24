@@ -2,6 +2,7 @@ import 'dotenv/config'
 import express from 'express'
 import photosRouter from './routes/photos'
 import mongoose from 'mongoose'
+import * as cors from 'cors'
 
 ( async () => {
     const app = express()
@@ -24,13 +25,7 @@ import mongoose from 'mongoose'
 
     // app.use( express.static( path( __dirname, 'public' ) ) )
 
-    app.use( ( req, res, next ) => {
-        res.header( 'Access-Control-Allow-Origin', '*' )
-        res.header( 'Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS' )
-        res.header( 'Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With' )
-
-        next()
-    } )
+    app.use( cors() )
 
     app.use( '/api/photos', photosRouter )
 
