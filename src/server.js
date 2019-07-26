@@ -2,17 +2,24 @@ import 'dotenv/config'
 import express from 'express'
 import photosRouter from './routes/photos'
 import mongoose from 'mongoose'
+import path from 'path'
 import * as cors from 'cors'
 
 ( async () => {
     const app = express()
     const PORT = process.env.SERVER_PORT || 3000
 
+    // See webpack.config configurations for __dirname
+    app.use( express.static( path.join( __dirname, '..', 'public' ) ) )
+
     const MONGO_URL = process.env.MONGO_DB_HOST + ':' + process.env.MONGO_DB_PORT + '/' + process.env.MONDO_DB_NAME
 
     const connection = await mongoose
         .connect( MONGO_URL, { useNewUrlParser: true } )
         .catch( err => console.error( 'Error connecting db:', err.message ) )
+
+    // You can use this route to monitor if the server is working or not
+    app.get( '/health', ( req, res ) => res.json( { UP: !!connection } ) )
 
     if ( !connection ) {
         app.use( ( req, res ) => {
@@ -21,13 +28,9 @@ import * as cors from 'cors'
         } )
     }
 
-    app.get( '/health', ( req, res ) => res.json( { UP: true } ) )
-
-    // app.use( express.static( path( __dirname, 'public' ) ) )
-
     app.use( cors() )
 
     app.use( '/api/photos', photosRouter )
 
-    app.listen( PORT, () => console.log( `Server is running on port ${ PORT }` ) )
+    app.listen( PORT, () => console.log( `Server is listening on port ${ PORT }` ) )
 } )()

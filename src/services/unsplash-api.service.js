@@ -5,6 +5,15 @@ import * as Vibrant from 'node-vibrant'
 class UnsplashApiService {
     constructor() {
         this.httpService = createHttpService( process.env.UNSPLASH_API_URL, { 'Authorization': 'Client-ID ' + process.env.UNSPLASH_API_CLIENT_ID } )
+        this.httpService.interceptors.response.use(
+            response => response,
+            error => {
+                if ( 401 === error.response.status ) {
+                    console.log( 'Error: API Responded with status code of 401, please check the key' )
+                } else {
+                    return error
+                }
+            } )
     }
 
     static convertResponseTagsIntoArray( tags ) {
@@ -61,6 +70,12 @@ class UnsplashApiService {
                 ...colorPalette
             }
         }
+    }
+
+    async fetchRandomPhoto() {
+        const photoResponse = await this.httpService.get( '/photos/random' )
+
+        return photoResponse.data
     }
 }
 
