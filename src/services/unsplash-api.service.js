@@ -4,7 +4,11 @@ import * as Vibrant from 'node-vibrant'
 
 class UnsplashApiService {
     constructor() {
-        this.httpService = createHttpService( process.env.UNSPLASH_API_URL, { 'Authorization': 'Client-ID ' + process.env.UNSPLASH_API_CLIENT_ID } )
+        // ??
+        this.httpService = createHttpService( process.env.UNSPLASH_API_URL, {
+            'Authorization': 'Client-ID ' + process.env.UNSPLASH_API_CLIENT_ID
+        } )
+
         this.httpService.interceptors.response.use(
             response => response,
             error => {
@@ -58,12 +62,9 @@ class UnsplashApiService {
 
     async fetchPhotoInfo( photoId ) {
         const photoInfoResponse = await this.httpService.get( '/photos/' + photoId )
-
         const colorPalette = await Vibrant.from( photoInfoResponse.data.urls.regular ).getPalette()
-
         const photoInfo = UnsplashApiService.mapUnsplashPhotoInfoResponse( photoInfoResponse.data )
 
-        // Hint: Spread object syntax
         return {
             ...photoInfo,
             palette: {

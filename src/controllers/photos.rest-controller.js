@@ -11,9 +11,6 @@ class PhotosRestController {
         return color.replace( '#', '' )
     }
 
-    /*
-     * Make the function make all the calls to the Colors API in parallel
-     */
     async fetchPhotosFromUnsplashApi( term, page ) {
         const photos = await this.unsplashApiService.fetchPhotosFromUnsplashApi( term, page )
 
@@ -42,7 +39,7 @@ class PhotosRestController {
         const page = request.query[ 'page' ] || 1
         const photos = await this.fetchPhotosFromUnsplashApi( request.params[ 'term' ], page )
 
-        const canOrderBy = [ 'likes', 'resolution' ]
+        const canOrderBy = [ '', 'resolution' ]
 
         if ( request.query[ 'orderBy' ] ) {
             const orderBy = request.query[ 'orderBy' ]
@@ -55,7 +52,8 @@ class PhotosRestController {
             }
 
             if ( orderBy === 'likes' ) {
-                photos.sort( ( a, b ) => a.likes > b.likes )
+                // Sort by likes
+                photos.sort(  )
             } else if ( orderBy === 'resolution' ) {
                 photos.sort( ( a, b ) => a.width * a.height > b.width * b.height )
             }
@@ -65,7 +63,7 @@ class PhotosRestController {
     }
 
     async fetchPhotoInfo( request, response ) {
-        const info = await this.unsplashApiService.fetchPhotoInfo( request.params.photo_id )
+        const info = await this.unsplashApiService.fetchPhotoInfo( req.params.photo_id )
 
         response.send( info )
     }

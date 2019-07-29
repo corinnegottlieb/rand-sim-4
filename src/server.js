@@ -2,14 +2,10 @@ import 'dotenv/config'
 import express from 'express'
 import photosRouter from './routes/photos'
 import mongoose from 'mongoose'
-import path from 'path'
 
 ( async () => {
     const app = express()
     const PORT = process.env.SERVER_PORT || 3000
-
-    // See webpack.config configurations for __dirname
-    app.use( express.static( path.join( __dirname, '..', 'public' ) ) )
 
     const MONGO_URL = process.env.MONGO_DB_HOST + ':' + process.env.MONGO_DB_PORT + '/' + process.env.MONDO_DB_NAME
 

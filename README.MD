@@ -19,14 +19,21 @@ It is NOT a file that you should be able to read.
 - Fixing all the errors that pops up in the console
 - Server is not even running (go to `/health` to monitor the server), check why
 - Fix authentication headers
+- Add the ability to order by `likes` when searching photos (see the routes)
 
 # Goal
 
 In this simulation the aim is to expose you to a real world backend architecture and also `bundling` using `webpack`.
 - Learning to read architecture diagram in order to understand complicated structured code
-- Handling REST API status codes
+- Handling REST API/HTTP status codes (`401`, `422`)
 - Using Mongoose
 - Learning about self invoked async functions
-- Using ES6 in node environment (export, import, etc)
+- Using ES6 in node environment (`export`, `import`, etc)
 - Working with external API 
 - Using authentication headers
+- Get know Axios module
+
+# Available Routes
+`/api/photos/search/<QUERY>` | Can add query string: `?orderBy=likes` or `?orderBy=resolution`
+ 
+`/api/photos/<PHOTO_ID>`
