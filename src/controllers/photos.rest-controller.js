@@ -69,10 +69,6 @@ class PhotosRestController {
 
         response.send( info )
     }
-
-    async fetchRandomPhoto( request, response ) {
-        const randomPhoto = this.unsplashApiService.fetchRandomPhoto()
-    }
 }
 
 export default new PhotosRestController()

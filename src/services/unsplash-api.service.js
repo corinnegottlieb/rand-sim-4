@@ -71,12 +71,6 @@ class UnsplashApiService {
             }
         }
     }
-
-    async fetchRandomPhoto() {
-        const photoResponse = await this.httpService.get( '/photos/random' )
-
-        return photoResponse.data
-    }
 }
 
 export default UnsplashApiService
