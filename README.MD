@@ -10,15 +10,15 @@ It is NOT a file that you should be able to read.
 
 # Features
 
-- Save each requested photo in the database - when a user requests a photo, save it using mongoose models
-So you should also build the schema and the model in the right file
-- Add the ability to get a random photo (read about it in Unsplash API: https://unsplash.com/documentation)
+- Save each requested photo in the database - when a user requests a photo, save it using mongoose models. It means you should also build the schema and a model in the right files
+- Add the ability to get/fetch a random photo (read about it in Unsplash API: https://unsplash.com/documentation)
 
 # To Do
 
 - Fixing access to `/public` folder
 - Fixing all the errors that pops up in the console
 - Server is not even running (go to `/health` to monitor the server), check why
+- Fix authentication headers
 
 # Goal
 
@@ -29,3 +29,4 @@ In this simulation the aim is to expose you to a real world backend architecture
 - Learning about self invoked async functions
 - Using ES6 in node environment (export, import, etc)
 - Working with external API 
+- Using authentication headers
