@@ -3,7 +3,6 @@ import express from 'express'
 import photosRouter from './routes/photos'
 import mongoose from 'mongoose'
 import path from 'path'
-import * as cors from 'cors'
 
 ( async () => {
     const app = express()
@@ -27,8 +26,6 @@ import * as cors from 'cors'
             res.json( { error: 'Server is unavailable at the moment' } )
         } )
     }
-
-    app.use( cors() )
 
     app.use( '/api/photos', photosRouter )
 
