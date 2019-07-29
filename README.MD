@@ -19,10 +19,7 @@ So you should also build the schema and the model in the right file
 - Fixing access to `/public` folder
 - Fixing `CORS` (Read about it)
 - Fixing all the errors that pops up in the console
-- Server is not even running (go to `/health` to monitor the server)
-
-# Extra
-
+- Server is not even running (go to `/health` to monitor the server), check why
 
 # Goal
 
