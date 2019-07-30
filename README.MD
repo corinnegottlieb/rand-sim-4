@@ -8,11 +8,6 @@ files into one big file called `./build/server.js`.
 It is NOT a file that you should be able to read.
 - You have a file attached call _Architecture.pdf_ that explains the architecture of the application, use it!
 
-# Features
-
-- Save each requested photo in the database - when a user requests a photo, save it using mongoose models. It means you should also build the schema and a model in the right files
-- Add the ability to get/fetch a random photo (read about it in Unsplash API: https://unsplash.com/documentation)
-
 # To Do
 
 - Fixing access to `/public` folder
@@ -20,6 +15,11 @@ It is NOT a file that you should be able to read.
 - Server is not even running (go to `/health` to monitor the server), check why
 - Fix authentication headers
 - Add the ability to order by `likes` when searching photos (see the routes)
+
+# Features
+
+- Save each requested photo in the database - when a user requests a photo, save it using mongoose models. It means you should also build the schema and a model in the right files
+- Add the ability to get/fetch a random photo (read about it in Unsplash API: https://unsplash.com/documentation)
 
 # Goal
 
