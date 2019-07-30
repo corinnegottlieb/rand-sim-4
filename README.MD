@@ -1,3 +1,15 @@
+# Goal
+
+In this simulation the aim is to expose you to a real world backend architecture and also `bundling` using `webpack`.
+- Learning to read architecture diagram in order to understand complicated structured code
+- Handling REST API/HTTP status codes (`401`, `422`)
+- Using Mongoose
+- Learning about self invoked async functions
+- Using ES6 in node environment (`export`, `import`, etc)
+- Working with external API 
+- Using authentication headers
+- Getting to know Axios module
+
 # Running/Environment
 
 - Make sure you **fork** this repository to your own Github, then clone it to your computer
@@ -20,18 +32,6 @@ It is NOT a file that you should be able to read.
 
 - Save each requested photo in the database - when a user requests a photo, save it using mongoose models. It means you should also build the schema and a model in the right files
 - Add the ability to get/fetch a random photo (read about it in Unsplash API: https://unsplash.com/documentation)
-
-# Goal
-
-In this simulation the aim is to expose you to a real world backend architecture and also `bundling` using `webpack`.
-- Learning to read architecture diagram in order to understand complicated structured code
-- Handling REST API/HTTP status codes (`401`, `422`)
-- Using Mongoose
-- Learning about self invoked async functions
-- Using ES6 in node environment (`export`, `import`, etc)
-- Working with external API 
-- Using authentication headers
-- Getting to know Axios module
 
 # Available Routes
 `/api/photos/search/<QUERY>` | Can add query string: `?orderBy=likes` or `?orderBy=resolution`
