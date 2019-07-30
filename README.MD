@@ -31,7 +31,7 @@ In this simulation the aim is to expose you to a real world backend architecture
 - Using ES6 in node environment (`export`, `import`, etc)
 - Working with external API 
 - Using authentication headers
-- Get know Axios module
+- Getting to know Axios module
 
 # Available Routes
 `/api/photos/search/<QUERY>` | Can add query string: `?orderBy=likes` or `?orderBy=resolution`
